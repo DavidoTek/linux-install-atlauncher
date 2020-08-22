@@ -2,12 +2,8 @@
 Unofficial installer for the [ATLauncher](https://atlauncher.com/) Minecraft Launcher for distros like Ubuntu, Fedora and Manjaro.
 
 ## Dependencies
-Dependencies are **Java 8**, `wget`, `unzip` and `zenity`. They should be preinstalled on most modern Linux distributions.
-
-Install on Debian/Ubuntu: `sudo apt install openjdk-8-jre wget unzip zenity`  
-Install on CentOS/Fedora: `sudo dnf install java-1.8.0-openjdk wget unzip zenity`  
-Install on Arch/Manjaro: `sudo pacman -S jre8-openjdk wget unzip zenity`
-
+Dependencies are **Java 8**, `wget`, `unzip` and `zenity`. They should be preinstalled on most modern Linux distributions. If not, the installer tries to install them automatically.  
+Note: If you have multiple Java versions installed, you might need to change the Java Path in the ATLauncher settings.
 
 ## Usage
 Open a Terminal and type following commands:  
@@ -24,8 +20,9 @@ To update/uninstall ATLauncher, right click on ATLauncher and select update or u
 
 ## Troubleshooting / FAQ
 
-### "Can't find Java. Add Java to Path."
-Make sure you have Java 8 installed and added it to the Path. You can easily check this by typing `java -version` in a Terminal.
+### "Cannot install dependencies. Make sure they are installed and press [ENTER]"
+The installer failed installing all dependencies. This may be the case on distribution other than Ubuntu, Fedora or Manjaro.  
+Try to install them manually.
 
 ### How to reinstall without loosing data
 To reinstall `ATLauncher.jar`, right click ATLauncher and choose `update`.  

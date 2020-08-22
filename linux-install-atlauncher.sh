@@ -3,9 +3,19 @@
 # Script for installing ATLauncher on Linux, Version 0.1
 # Copyright (C) 2020 DavidoTek
 
-if [ -z `which java` ] ; then
-  echo -e "\e[31mCan't find Java. Add Java to Path.\e[0m"
-  read -p "Press [ENTER] to continue anyway"
+echo Trying to install all dependencies...
+
+if which apt > /dev/null; then
+  echo Detected apt. Trying to install dependencies...
+  pkexec apt -y install openjdk-8-jre wget unzip zenity
+elif which dnf > /dev/null; then
+  echo Detected dnf. Trying to install dependencies...
+  pkexec dnf install java-1.8.0-openjdk wget unzip zenity
+elif which pacman > /dev/null; then
+  echo Detected pacman. Trying to install dependencies...
+  pkexec pacman -S jre8-openjdk wget unzip zenity
+else
+  echo -p "Cannot install dependencies. Make sure they are installed and press [ENTER]. Press Ctrl+C to cancel the installation."
 fi
 
 ATLAUNCHER_HOME=$HOME/Applications/ATLauncher
@@ -43,7 +53,6 @@ cat << EOF > $ATLAUNCHER_HOME/linux-update-atlauncher.sh
 
 ATLAUNCHER_HOME=$ATLAUNCHER_HOME
 DESKTOP_FILE=$DESKTOP_FILE
-JAVA_PATH=$JAVA_PATH
 
 get_download_url() {
   curl --silent "https://api.github.com/repos/ATLauncher/ATLauncher/releases/latest" |
