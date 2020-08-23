@@ -19,7 +19,8 @@ else
 fi
 
 ATLAUNCHER_HOME=$HOME/Applications/ATLauncher
-DESKTOP_FILE=$HOME/.local/share/applications/ATLauncher.desktop
+DESKTOP_FILE_PATH=$HOME/.local/share/applications
+DESKTOP_FILE=$DESKTOP_FILE_PATH/ATLauncher.desktop
 JAVA_PATH=`which java`
 
 get_download_url() {
@@ -110,6 +111,7 @@ EOF
 
 chmod +x $ATLAUNCHER_HOME/linux-uninstall-atlauncher.sh
 
+mkdir -p $DESKTOP_FILE_PATH
 
 cat << EOF > $DESKTOP_FILE
 [Desktop Entry]
