@@ -10,7 +10,7 @@ if which apt > /dev/null; then
   pkexec apt -y install openjdk-8-jre wget unzip zenity
 elif which dnf > /dev/null; then
   echo Detected dnf. Trying to install dependencies...
-  pkexec dnf install java-1.8.0-openjdk wget unzip zenity
+  pkexec dnf -y install java-1.8.0-openjdk wget unzip zenity
 elif which pacman > /dev/null; then
   echo Detected pacman. Trying to install dependencies...
   pkexec pacman -S --noconfirm jre8-openjdk wget unzip zenity
