@@ -13,7 +13,7 @@ elif which dnf > /dev/null; then
   pkexec dnf install java-1.8.0-openjdk wget unzip zenity
 elif which pacman > /dev/null; then
   echo Detected pacman. Trying to install dependencies...
-  pkexec pacman -S jre8-openjdk wget unzip zenity
+  pkexec pacman -S --noconfirm jre8-openjdk wget unzip zenity
 else
   echo -p "Cannot install dependencies. Make sure they are installed and press [ENTER]. Press Ctrl+C to cancel the installation."
 fi
