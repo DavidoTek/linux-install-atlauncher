@@ -5,7 +5,10 @@
 
 echo Trying to install all dependencies...
 
-if which apt > /dev/null; then
+if which zypper > /dev/null; then
+  echo Detected zypper Trying to install dependencies...
+  pkexec zypper install -y java-1_8_0-openjdk unzip zenity
+elif which apt > /dev/null; then
   echo Detected apt. Trying to install dependencies...
   pkexec apt -y install openjdk-8-jre wget unzip zenity
 elif which dnf > /dev/null; then
