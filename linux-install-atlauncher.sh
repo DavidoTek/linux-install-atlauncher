@@ -48,7 +48,7 @@ unzip -p $ATLAUNCHER_HOME/bin/ATLauncher.jar assets/image/Icon.png > $ATLAUNCHER
 
 ATLAUNCHER_VERSION=`get_version`
 
-
+echo `get_version` > $ATLAUNCHER_HOME/version.txt
 
 cat << EOF > $ATLAUNCHER_HOME/linux-update-atlauncher.sh
 #!/bin/bash
@@ -57,6 +57,40 @@ cat << EOF > $ATLAUNCHER_HOME/linux-update-atlauncher.sh
 
 ATLAUNCHER_HOME=$ATLAUNCHER_HOME
 DESKTOP_FILE=$DESKTOP_FILE
+
+# function 'vercomp' to compare version
+# Copyright 2010 Dennis Williamson  (https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash?page=1)
+# Licensed under CC BY-SA 2.5 (https://creativecommons.org/licenses/by-sa/2.5/)
+vercomp () {
+    if [[ \$1 == \$2 ]]
+    then
+        return 0
+    fi
+    local IFS=.
+    local i ver1=(\$1) ver2=(\$2)
+    # fill empty fields in ver1 with zeros
+    for ((i=\${#ver1[@]}; i<\${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<\${#ver1[@]}; i++))
+    do
+        if [[ -z \${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#\${ver1[i]} > 10#\${ver2[i]}))
+        then
+            return 1
+        fi
+        if ((10#\${ver1[i]} < 10#\${ver2[i]}))
+        then
+            return 2
+        fi
+    done
+    return 0
+}
 
 get_download_url() {
   curl --silent "https://api.github.com/repos/ATLauncher/ATLauncher/releases/latest" |
@@ -71,7 +105,17 @@ get_version() {
   sed -E 's/.*"([^"]+)".*/\1/'
 }
 
-ATLAUNCHER_VERSION=`get_version`
+ATLAUNCHER_VERSION=\`get_version\`
+CURRENT_AT_VERSION=\`cat $ATLAUNCHER_HOME/version.txt\`
+
+vercomp \$CURRENT_AT_VERSION \$ATLAUNCHER_VERSION
+
+if ((\$? != 2))
+then
+  echo  \$CURRENT_AT_VERSION" >= "\$ATLAUNCHER_VERSION
+  echo "No update available!"
+  exit
+fi
 
 mkdir -p $ATLAUNCHER_HOME/bin
 
@@ -83,6 +127,8 @@ rm -rf $ATLAUNCHER_HOME/bin/libraries
 rm -rf $ATLAUNCHER_HOME/bin/temp
 
 wget `get_download_url` -O $ATLAUNCHER_HOME/bin/ATLauncher.jar
+
+echo \$ATLAUNCHER_VERSION > $ATLAUNCHER_HOME/version.txt
 
 unzip -p $ATLAUNCHER_HOME/bin/ATLauncher.jar assets/image/Icon.png > $ATLAUNCHER_HOME/Icon.png
 
