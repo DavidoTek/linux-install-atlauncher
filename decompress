@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Selfextracting installer for ATLauncher on Linux (Offline Installer)
+# Copyright (C) 2020-2021 DavidoTek
+
+# === README ===
+# Looks like you're trying to install ATLauncher.
+# Just double-clicking the file may not work in your distribution.
+# Try opening a terminal by right-clicking in the folder and choosing "Open Terminal here".
+# 1. To make the file exectuable, type:  chmod +x install-ATLauncher-*
+# 2. To finally run the installer, type:  ./install-ATLauncher-*
+# If that doesn't work, here's more information: https://github.com/DavidoTek/linux-install-atlauncher
+
+echo "Selfextracting installer for ATLauncher..."
+
+export TMPDIR=`mktemp -d /tmp/selfextract-atlauncher.XXXXXX`
+
+ARCHIVE=`awk '/^__ARCHIVE_BELOW__/ {print NR + 1; exit 0; }' $0`
+
+tail -n+$ARCHIVE $0 | tar xzv -C $TMPDIR
+
+CDIR=`pwd`
+cd $TMPDIR
+bash ./installer
+
+cd $DIR
+rm -rf $TMPDIR
+
+exit 0
+
+__ARCHIVE_BELOW__

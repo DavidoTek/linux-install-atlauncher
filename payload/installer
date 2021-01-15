@@ -1,15 +1,8 @@
 #!/bin/bash
 
-# Script for installing ATLauncher on Linux, Version 1.0
+# Selfextracting installer for ATLauncher on Linux - installer payload (Offline Installer)
 # Copyright (C) 2020-2021 DavidoTek
 
-# === README ===
-# Looks like you're trying to install ATLauncher.
-# Just double-clicking the file may not work in your distribution.
-# Try opening a terminal by right-clicking in the folder and choosing "Open Terminal here".
-# 1. To make the file exectuable, type:  chmod +x linux-install-atlauncher.sh
-# 2. To finally run the installer, type:  ./linux-install-atlauncher.sh
-# If that doesn't work, here's more information: https://github.com/DavidoTek/linux-install-atlauncher
 
 echo Trying to install all dependencies...
 
@@ -40,29 +33,15 @@ DESKTOP_FILE_PATH=$HOME/.local/share/applications
 DESKTOP_FILE=$DESKTOP_FILE_PATH/ATLauncher.desktop
 JAVA_PATH=`which java`
 
-get_download_url() {
-  curl --silent "https://api.github.com/repos/ATLauncher/ATLauncher/releases/latest" |
-  grep '"browser_download_url":' |
-  grep jar |
-  sed -E 's/.*"([^"]+)".*/\1/'
-}
-
-get_version() {
-  curl --silent "https://api.github.com/repos/ATLauncher/ATLauncher/releases/latest" |
-  grep '"tag_name":' |
-  sed -E 's/.*"([^"]+)".*/\1/'
-}
-
-
 mkdir -p $ATLAUNCHER_HOME/bin
 
-wget `get_download_url` -O $ATLAUNCHER_HOME/bin/ATLauncher.jar
+cp ./ATLauncher.jar $ATLAUNCHER_HOME/bin/ATLauncher.jar
+cp ./version.txt $ATLAUNCHER_HOME/version.txt
 
 unzip -p $ATLAUNCHER_HOME/bin/ATLauncher.jar assets/image/Icon.png > $ATLAUNCHER_HOME/Icon.png
 
-ATLAUNCHER_VERSION=`get_version`
+ATLAUNCHER_VERSION=`cat ./version.txt`
 
-echo `get_version` > $ATLAUNCHER_HOME/version.txt
 
 cat << EOF > $ATLAUNCHER_HOME/linux-update-atlauncher.sh
 #!/bin/bash
@@ -179,7 +158,6 @@ mkdir -p $DESKTOP_FILE_PATH
 cat << EOF > $DESKTOP_FILE
 [Desktop Entry]
 Name=ATLauncher
-Version=$ATLAUNCHER_VERSION
 Type=Application
 Exec=$JAVA_PATH -jar $HOME/Applications/ATLauncher/bin/ATLauncher.jar
 Icon=$HOME/Applications/ATLauncher/Icon.png

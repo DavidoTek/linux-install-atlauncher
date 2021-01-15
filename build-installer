@@ -1,0 +1,34 @@
+#!/bin/bash
+echo "Building self-extracting installer for ATLauncher..."
+
+rm ./payload.tar.gz
+rm ./install-ATLauncher-*
+rm ./payload/ATLauncher.jar
+
+get_download_url() {
+  curl --silent "https://api.github.com/repos/ATLauncher/ATLauncher/releases/latest" |
+  grep '"browser_download_url":' |
+  grep jar |
+  sed -E 's/.*"([^"]+)".*/\1/'
+}
+
+get_version() {
+  curl --silent "https://api.github.com/repos/ATLauncher/ATLauncher/releases/latest" |
+  grep '"tag_name":' |
+  sed -E 's/.*"([^"]+)".*/\1/'
+}
+
+wget `get_download_url` -O ./payload/ATLauncher.jar
+echo `get_version` > ./payload/version.txt
+
+cd payload
+tar cf ../payload.tar ./*
+cd ..
+
+gzip payload.tar
+
+# ToDo: check if successful...
+
+cat decompress payload.tar.gz > install-ATLauncher-`get_version`.bsx
+
+echo "done"
