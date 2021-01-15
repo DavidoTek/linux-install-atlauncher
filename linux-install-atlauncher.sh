@@ -73,7 +73,7 @@ ATLAUNCHER_HOME=$ATLAUNCHER_HOME
 DESKTOP_FILE=$DESKTOP_FILE
 
 # function 'vercomp' to compare version
-# Copyright 2010 Dennis Williamson  (https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash?page=1)
+# Copyright 2010 Dennis Williamson  (https://stackoverflow.com/a/4025065)
 # Licensed under CC BY-SA 2.5 (https://creativecommons.org/licenses/by-sa/2.5/)
 vercomp () {
     if [[ \$1 == \$2 ]]
