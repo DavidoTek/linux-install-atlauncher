@@ -140,7 +140,7 @@ rm -rf $ATLAUNCHER_HOME/bin/faileddownloads
 rm -rf $ATLAUNCHER_HOME/bin/libraries
 rm -rf $ATLAUNCHER_HOME/bin/temp
 
-wget `get_download_url` -O $ATLAUNCHER_HOME/bin/ATLauncher.jar
+wget \`get_download_url\` -O $ATLAUNCHER_HOME/bin/ATLauncher.jar
 
 echo \$ATLAUNCHER_VERSION > $ATLAUNCHER_HOME/version.txt
 
