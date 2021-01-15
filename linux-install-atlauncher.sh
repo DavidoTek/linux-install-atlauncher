@@ -5,20 +5,26 @@
 
 echo Trying to install all dependencies...
 
-if which zypper > /dev/null; then
-  echo Detected zypper Trying to install dependencies...
-  pkexec zypper install -y java-1_8_0-openjdk unzip zenity
-elif which apt > /dev/null; then
-  echo Detected apt. Trying to install dependencies...
-  pkexec apt -y install openjdk-8-jre wget unzip zenity
-elif which dnf > /dev/null; then
-  echo Detected dnf. Trying to install dependencies...
-  pkexec dnf -y install java-1.8.0-openjdk wget unzip zenity
-elif which pacman > /dev/null; then
-  echo Detected pacman. Trying to install dependencies...
-  pkexec pacman -S --noconfirm jre8-openjdk wget unzip zenity
-else
-  echo -p "Cannot install dependencies. Make sure they are installed and press [ENTER]. Press Ctrl+C to cancel the installation."
+install_dependencies() {
+  if which zypper > /dev/null; then
+    echo Detected zypper Trying to install dependencies...
+    pkexec zypper install -y java-1_8_0-openjdk unzip zenity
+  elif which apt > /dev/null; then
+    echo Detected apt. Trying to install dependencies...
+    pkexec apt -y install openjdk-8-jre wget unzip zenity
+  elif which dnf > /dev/null; then
+    echo Detected dnf. Trying to install dependencies...
+    pkexec dnf -y install java-1.8.0-openjdk wget unzip zenity
+  elif which pacman > /dev/null; then
+    echo Detected pacman. Trying to install dependencies...
+    pkexec pacman -S --noconfirm jre8-openjdk wget unzip zenity
+  else
+    echo -p "Cannot install dependencies. Make sure they are installed and press [ENTER]. Press Ctrl+C to cancel the installation."
+  fi
+}
+
+if ! which java > /dev/null || ! which unzip > /dev/null || ! which zenity > /dev/null; then
+  install_dependencies
 fi
 
 ATLAUNCHER_HOME=$HOME/Applications/ATLauncher
