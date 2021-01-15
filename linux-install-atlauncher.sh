@@ -1,7 +1,15 @@
 #!/bin/bash
 
-# Script for installing ATLauncher on Linux, Version 0.1
-# Copyright (C) 2020 DavidoTek
+# Script for installing ATLauncher on Linux, Version 1.0
+# Copyright (C) 2020-2021 DavidoTek
+
+# === README ===
+# Looks like you're trying to install ATLauncher.
+# Just double-clicking the file may not work in your distribution.
+# Try opening a terminal by right-clicking in the folder and choosing "Open Terminal here".
+# 1. To make the file exectuable, type:  chmod +x linux-install-atlauncher.sh
+# 2. To finally run the installer, type:  ./linux-install-atlauncher.sh
+# If that doesn't work, here's more information: https://github.com/DavidoTek/linux-install-atlauncher
 
 echo Trying to install all dependencies...
 
