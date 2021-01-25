@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script for installing ATLauncher on Linux, Version 1.0
+# Script for installing ATLauncher on Linux, Version 1.1
 # Copyright (C) 2020-2021 DavidoTek
 
 # === README ===
@@ -17,6 +17,9 @@ install_dependencies() {
   if which zypper > /dev/null; then
     echo Detected zypper Trying to install dependencies...
     pkexec zypper install -y java-1_8_0-openjdk unzip zenity
+  elif which eopkg > /dev/null; then
+    echo Detected eopkg. Trying to install dependencies...
+    pkexec eopkg install -y openjdk-8 unzip zenity
   elif which apt > /dev/null; then
     echo Detected apt. Trying to install dependencies...
     pkexec apt -y install openjdk-8-jre wget unzip zenity
