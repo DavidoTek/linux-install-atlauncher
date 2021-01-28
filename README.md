@@ -1,10 +1,6 @@
 # Unofficial ATLauncher installer for Linux
 Unofficial installer for the [ATLauncher](https://atlauncher.com/) Minecraft Launcher for distros like Ubuntu, Fedora Manjaro, openSUSE and Solus.
 
-## Dependencies
-Dependencies are **Java 8**, `wget`, `unzip` and `zenity`. They should be preinstalled on most modern Linux distributions. If not, the installer tries to install them automatically.  
-Note: If you have multiple Java versions installed, you might need to change the Java Path in the ATLauncher settings.
-
 ## Usage
 Open a Terminal and type following commands:  
 `wget https://raw.githubusercontent.com/DavidoTek/linux-install-atlauncher/master/linux-install-atlauncher.sh`
@@ -17,6 +13,10 @@ ATLauncher should be installed automatically in `~/Applications/ATLauncher/`.
 
 ### Update / Uninstall
 To update/uninstall ATLauncher, right click on ATLauncher and select update or uninstall. ATLauncher will be removed including all saves (worlds, screenshots, texturepacks, ...).
+
+## Dependencies
+Dependencies are **Java 8**, `wget`, `unzip` and `zenity`. They should be preinstalled on most modern Linux distributions. If not, the installer tries to install them automatically.  
+Note: If you have multiple Java versions installed, you might need to change the Java Path in the ATLauncher settings.
 
 ## Troubleshooting / FAQ
 
