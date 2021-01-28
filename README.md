@@ -16,7 +16,7 @@ To update/uninstall ATLauncher, right click on ATLauncher and select update or u
 
 ## Dependencies
 Dependencies are **Java 8**, `wget`, `unzip` and `zenity`. They should be preinstalled on most modern Linux distributions. If not, the installer tries to install them automatically.  
-Note: If you have multiple Java versions installed, you might need to change the Java Path in the ATLauncher settings.
+Note: If you have multiple Java versions installed, you might need to change the Java Path to Java 8 in the ATLauncher settings.
 
 ## Troubleshooting / FAQ
 
