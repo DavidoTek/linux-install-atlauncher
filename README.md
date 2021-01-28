@@ -1,5 +1,5 @@
 # Unofficial ATLauncher installer for Linux
-Unofficial installer for the [ATLauncher](https://atlauncher.com/) Minecraft Launcher for distros like Ubuntu, Fedora and Manjaro.
+Unofficial installer for the [ATLauncher](https://atlauncher.com/) Minecraft Launcher for distros like Ubuntu, Fedora Manjaro, openSUSE and Solus.
 
 ## Dependencies
 Dependencies are **Java 8**, `wget`, `unzip` and `zenity`. They should be preinstalled on most modern Linux distributions. If not, the installer tries to install them automatically.  
