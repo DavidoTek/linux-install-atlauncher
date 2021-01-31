@@ -181,70 +181,8 @@ chmod +x $ATLAUNCHER_HOME/linux-uninstall-atlauncher.sh
 cat << EOF > $ATLAUNCHER_HOME/start-atlauncher.sh
 #!/bin/bash
 
-# Script for starting ATLauncher (check for updates)
-
-# function 'vercomp' to compare version
-# Copyright 2010 Dennis Williamson  (https://stackoverflow.com/a/4025065)
-# Licensed under CC BY-SA 2.5 (https://creativecommons.org/licenses/by-sa/2.5/)
-vercomp () {
-    if [[ \$1 == \$2 ]]
-    then
-        return 0
-    fi
-    local IFS=.
-    local i ver1=(\$1) ver2=(\$2)
-    # fill empty fields in ver1 with zeros
-    for ((i=\${#ver1[@]}; i<\${#ver2[@]}; i++))
-    do
-        ver1[i]=0
-    done
-    for ((i=0; i<\${#ver1[@]}; i++))
-    do
-        if [[ -z \${ver2[i]} ]]
-        then
-            # fill empty fields in ver2 with zeros
-            ver2[i]=0
-        fi
-        if ((10#\${ver1[i]} > 10#\${ver2[i]}))
-        then
-            return 1
-        fi
-        if ((10#\${ver1[i]} < 10#\${ver2[i]}))
-        then
-            return 2
-        fi
-    done
-    return 0
-}
-
-get_download_url() {
-  curl --silent "https://api.github.com/repos/ATLauncher/ATLauncher/releases/latest" |
-  grep '"browser_download_url":' |
-  grep jar |
-  sed -E 's/.*"([^"]+)".*/\1/'
-}
-
-get_version() {
-  curl --silent "https://api.github.com/repos/ATLauncher/ATLauncher/releases/latest" |
-  grep '"tag_name":' |
-  sed -E 's/.*"([^"]+)".*/\1/'
-}
-
-ATLAUNCHER_VERSION=\`get_version\`
-CURRENT_AT_VERSION=\`cat $ATLAUNCHER_HOME/version.txt\`
-
-vercomp \$CURRENT_AT_VERSION \$ATLAUNCHER_VERSION
-
-if ((\$? == 2))
-then
-  echo  \$CURRENT_AT_VERSION" >= "\$ATLAUNCHER_VERSION
-  echo "Update available!"
-  if zenity --question --title "Update available" --text "Do you want to update from \$CURRENT_AT_VERSION to $ATLAUNCHER_VERSION?"; then
-    $ATLAUNCHER_HOME/linux-update-atlauncher.sh;
-  fi
-fi
-
-echo Starting ATLauncher \$CURRENT_AT_VERSION...
+# Script for starting ATLauncher
+echo Starting ATLauncher...
 
 $JAVA_PATH -jar $ATLAUNCHER_HOME/bin/ATLauncher.jar
 EOF
