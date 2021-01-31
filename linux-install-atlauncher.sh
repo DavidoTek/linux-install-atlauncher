@@ -38,7 +38,7 @@ if ! which java > /dev/null || ! which unzip > /dev/null || ! which zenity > /de
   install_dependencies
 fi
 
-ATLAUNCHER_HOME=$HOME/Applications/ATLauncher
+ATLAUNCHER_HOME=$HOME/.local/share/atlauncher
 DESKTOP_FILE_PATH=$HOME/.local/share/applications
 DESKTOP_FILE=$DESKTOP_FILE_PATH/ATLauncher.desktop
 JAVA_PATH=`which java`
@@ -161,14 +161,24 @@ cat << EOF > $ATLAUNCHER_HOME/linux-uninstall-atlauncher.sh
 
 # Script for uninstalling ATLauncher on Linux
 
-if ! zenity --question --title "Uninstall ATLauncher" --text "Do you wan't to proceed? All your saved data will be deleted!"; then
+if ! zenity --question --title "Uninstall ATLauncher" --text "Do you wan't to proceed? Your ATLauncher instances will be saved."; then
   exit;
 fi
 
-ATLAUNCHER_HOME=$HOME/Applications/ATLauncher
-DESKTOP_FILE=$HOME/.local/share/applications/ATLauncher.desktop
-
-rm -rf $ATLAUNCHER_HOME
+rm -rf $ATLAUNCHER_HOME/bin/assets
+rm -rf $ATLAUNCHER_HOME/bin/cache
+rm -rf $ATLAUNCHER_HOME/bin/downloads
+rm -rf $ATLAUNCHER_HOME/bin/faileddownloads
+rm -rf $ATLAUNCHER_HOME/bin/libraries
+rm -rf $ATLAUNCHER_HOME/bin/loaders
+rm -rf $ATLAUNCHER_HOME/bin/logs
+rm -rf $ATLAUNCHER_HOME/bin/runtimes
+rm -rf $ATLAUNCHER_HOME/bin/temp
+rm $ATLAUNCHER_HOME/bin/ATLauncher.jar
+rm $ATLAUNCHER_HOME/bin/.test
+rm $ATLAUNCHER_HOME/version.txt
+rm $ATLAUNCHER_HOME/*sh
+rm $ATLAUNCHER_HOME/Icon.png
 rm $DESKTOP_FILE
 
 zenity --notification --text "Uninstalled ATLauncher \$ATLAUNCHER_VERSION."
