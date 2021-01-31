@@ -9,7 +9,7 @@ Open a Terminal and type following commands:
 
 `./linux-install-atlauncher.sh`
 
-ATLauncher should be installed automatically in `~/Applications/ATLauncher/`.
+ATLauncher should be installed automatically in `~/.local/share/atlauncher/`.
 
 ### Update / Uninstall
 To update/uninstall ATLauncher, right click on ATLauncher and select update or uninstall. ATLauncher will be removed including all saves (worlds, screenshots, texturepacks, ...).
@@ -26,7 +26,7 @@ Try to install them manually.
 
 ### How to reinstall without loosing data
 To reinstall `ATLauncher.jar`, right click ATLauncher and choose `update`.  
-If this isn't working, go to `~/Applications/ATLauncher/bin` and delete all files/folders **except** `backups`, `instances` and `servers`. Then right click ATLauncher and choose `update`.
+If this isn't working, go to `~/.local/share/atlauncher/bin` and delete all files/folders **except** `backups`, `instances` and `servers`. Then right click ATLauncher and choose `update`.
 
 ## LICENSE
 Copyright (c) 2020 DavidoTek

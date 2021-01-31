@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script for installing ATLauncher on Linux, Version 1.2
+# Script for installing ATLauncher on Linux, Version 2.0
 # Copyright (C) 2020-2021 DavidoTek
 
 # === README ===
