@@ -131,6 +131,7 @@ if ((\$? != 2))
 then
   echo  \$CURRENT_AT_VERSION" >= "\$ATLAUNCHER_VERSION
   echo "No update available!"
+  zenity --notification --text "No update available.\nCurrent version is \$CURRENT_AT_VERSION. Newest version is \$ATLAUNCHER_VERSION"
   exit
 fi
 
