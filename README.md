@@ -12,7 +12,7 @@ Open a Terminal and type following commands:
 ATLauncher should be installed automatically in `~/.local/share/atlauncher/`.
 
 ### Update / Uninstall
-To update/uninstall ATLauncher, right click on ATLauncher and select update or uninstall. ATLauncher will be removed including all saves (worlds, screenshots, texturepacks, ...).
+To update/uninstall ATLauncher, right click on ATLauncher and select update or uninstall. ATLauncher will be removed except all saves (worlds, screenshots, texturepacks, configs, ...). To completely remove all saves, delete `~/.local/share/atlauncher/`.
 
 ## Dependencies
 Dependencies are **Java 8**, `wget`, `unzip` and `zenity`. They should be preinstalled on most modern Linux distributions. If not, the installer tries to install them automatically.  
