@@ -16,25 +16,25 @@ echo Trying to install all dependencies...
 install_dependencies() {
   if which zypper > /dev/null; then
     echo Detected zypper Trying to install dependencies...
-    pkexec zypper install -y java-1_8_0-openjdk unzip zenity
+    pkexec zypper install -y java-1_8_0-openjdk unzip zenity curl
   elif which eopkg > /dev/null; then
     echo Detected eopkg. Trying to install dependencies...
-    pkexec eopkg install -y openjdk-8 unzip zenity
+    pkexec eopkg install -y openjdk-8 unzip zenity curl
   elif which apt > /dev/null; then
     echo Detected apt. Trying to install dependencies...
-    pkexec apt -y install openjdk-8-jre wget unzip zenity
+    pkexec apt -y install openjdk-8-jre wget unzip zenity curl
   elif which dnf > /dev/null; then
     echo Detected dnf. Trying to install dependencies...
-    pkexec dnf -y install java-1.8.0-openjdk wget unzip zenity
+    pkexec dnf -y install java-1.8.0-openjdk wget unzip zenity curl
   elif which pacman > /dev/null; then
     echo Detected pacman. Trying to install dependencies...
-    pkexec pacman -S --noconfirm jre8-openjdk wget unzip zenity
+    pkexec pacman -S --noconfirm jre8-openjdk wget unzip zenity curl
   else
     echo -p "Cannot install dependencies. Make sure they are installed and press [ENTER]. Press Ctrl+C to cancel the installation."
   fi
 }
 
-if ! which java > /dev/null || ! which unzip > /dev/null || ! which zenity > /dev/null; then
+if ! which java > /dev/null || ! which unzip > /dev/null || ! which curl > /dev/null || ! which zenity > /dev/null; then
   install_dependencies
 fi
 
